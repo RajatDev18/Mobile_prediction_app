@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="glass-panel">
+            <h1>Prediction Result</h1>
+
+            <div class="result-box" style="margin-bottom: 2rem;">
+                {{ prediction_text }}
+            </div>
+
+            <div class="section-title">Mobile Summary</div>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span class="label">Battery:</span>
+                    <span class="value">{{ summary.battery_power }} mAh</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">RAM:</span>
+                    <span class="value">{{ summary.ram_gb }} GB</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Storage:</span>
+                    <span class="value">{{ summary.int_memory }} GB</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Processor:</span>
+                    <span class="value">{{ summary.n_cores }} Cores @ {{ summary.clock_speed }} GHz</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Display:</span>
+                    <span class="value">{{ summary.resolution }}</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Camera:</span>
+                    <span class="value">{{ summary.pc }}MP Main / {{ summary.fc }}MP Front</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Connectivity:</span>
+                    <span class="value">
+                        {% if summary.four_g %}4G {% endif %}
+                        {% if summary.three_g %}3G {% endif %}
+                        {% if summary.wifi %}WiFi {% endif %}
+                        {% if summary.blue %}BT {% endif %}
+                    </span>
+                </div>
+            </div>
+
+            <a href="{{ url_for('index') }}" class="submit-btn"
+                style="display: block; text-align: center; text-decoration: none; margin-top: 2rem;">Predict Other</a>
+        </div>
+    </div>
+</body>
+
+</html>
